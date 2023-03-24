@@ -56,6 +56,7 @@ public class Email {
                 smallLetter = true;
             } else if ((ch >= '0') && (ch <= '9')){
                 digit = true;
+
             }
             else{
                 specialCharacter = true;

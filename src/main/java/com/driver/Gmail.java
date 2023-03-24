@@ -58,7 +58,7 @@ public class Gmail extends Email {
         if(Inbox.isEmpty()){
             return null;
         }
-        return Inbox.get(Inbox.size() -1).getRight();
+        return Inbox.get(Inbox.size()-1).getRight();
     }
 
     public String findOldestMessage(){
@@ -95,11 +95,10 @@ public class Gmail extends Email {
     public void emptyTrash(){
         // clear all mails in the trash
         Trash.clear();
-
     }
 
     public int getInboxCapacity() {
         // Return the maximum number of mails that can be stored in the inbox
-        return inboxCapacity;
+        return this.inboxCapacity;
     }
 }
