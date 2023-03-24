@@ -25,47 +25,28 @@ public class Email {
         // 3. It contains at least one lowercase letter
         // 4. It contains at least one digit
         // 5. It contains at least one special character. Any character apart from alphabets and digits is a special character
-
-        if(oldPassword.equals(password)){
-            if(isValid(newPassword)){
-                System.out.println("Password changed successfully");
-            }
-            else {
-                System.out.println("The new password is not valid!");
-            }
+        if(!oldPassword.equals(this.password)){
+            return;
         }
-        else {
-            System.out.println("The given password does not match with current password!");
+        if(conditons(newPassword)){
+            this.password = newPassword;
+
         }
     }
+    private boolean conditons(String newPassword) {
 
-    private boolean isValid(String password){
-        boolean capitalLetter = false;
-        boolean smallLetter = false;
+        if(newPassword.length()<8) return false;
+        boolean upper = false;
+        boolean lower = false;
         boolean digit = false;
-        boolean specialCharacter = false;
+        boolean special = false;
 
-        if(password.length() < 8){
-            return false;
+        for(int i=0;i<newPassword.length();i++){
+            if(newPassword.charAt(i)>='A' && newPassword.charAt(i)<='Z') upper = true;
+            else if(newPassword.charAt(i)>='a' && newPassword.charAt(i)<='z') lower = true;
+            else if(newPassword.charAt(i)>='0' && newPassword.charAt(i)<='9') digit = true;
+            else special = true;
         }
-        for(int i = 0; i < password.length(); i++){
-            char ch = password.charAt(i);
-            if((ch >= 'A') && (ch <= 'Z')){
-                capitalLetter = true;
-            } else if ((ch >= 'a') && (ch <= 'z')){
-                smallLetter = true;
-            } else if ((ch >= '0') && (ch <= '9')){
-                digit = true;
-
-            }
-            else{
-                specialCharacter = true;
-            }
-        }
-
-        if(capitalLetter && smallLetter && digit && specialCharacter){
-            return true;
-        }
-        return false;
+        return upper && lower && digit && special;
     }
 }
